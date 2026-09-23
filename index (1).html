@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NORAGAMI STORE - Mobile</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:Arial,Helvetica,sans-serif;color:#fff;background:#050b18;min-height:100vh;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;background:url("https://wallpaperaccess.com/full/24321057.gif") center/cover fixed no-repeat;z-index:-3}
+body:after{content:"";position:fixed;inset:0;background:linear-gradient(180deg,rgba(0,0,20,.45),rgba(0,8,30,.8));z-index:-2}
+.blue-light{position:fixed;width:220px;height:220px;border-radius:50%;background:rgba(0,140,255,.16);filter:blur(55px);z-index:-1;animation:floatLight 8s ease-in-out infinite alternate}
+.blue-light.one{top:8%;left:-80px}.blue-light.two{right:-80px;bottom:15%;animation-delay:2s}
+@keyframes floatLight{from{transform:translateY(-20px)}to{transform:translateY(30px)}}
+.navbar{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:13px 18px;background:rgba(2,8,25,.82);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,174,255,.35);box-shadow:0 4px 25px rgba(0,119,255,.16)}
+.logo{font-size:18px;font-weight:900;color:#fff;text-shadow:0 0 12px #008cff}.nav-actions{display:flex;gap:8px}.nav-btn{border:1px solid rgba(0,174,255,.5);background:rgba(0,113,255,.13);color:#fff;border-radius:10px;padding:8px 11px;cursor:pointer;font-weight:700}
+.hero{text-align:center;padding:62px 18px 42px}.hero h1{font-size:15px;letter-spacing:4px;color:#9bdcff}.hero h2{font-size:clamp(30px,8vw,58px);margin:10px 0;color:#fff;text-shadow:0 0 10px #00aaff,0 0 28px rgba(0,145,255,.8)}.hero p{font-weight:700;color:#b8e9ff}
+.container{width:min(1150px,92%);margin:auto}.section-title{text-align:center;font-size:25px;margin:10px 0 22px;text-shadow:0 0 15px #008cff}.filters{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:20px}.filter-btn{border:1px solid rgba(0,170,255,.45);background:rgba(0,20,55,.7);color:#dff6ff;padding:9px 14px;border-radius:999px;cursor:pointer}.filter-btn.active,.filter-btn:hover{background:#087ee8;color:#fff;box-shadow:0 0 15px rgba(0,144,255,.55)}
+.products{display:grid;grid-template-columns:1fr;gap:16px}.product{position:relative;padding:20px;border-radius:18px;background:linear-gradient(145deg,rgba(9,63,130,.9),rgba(3,15,45,.92));border:1px solid rgba(78,190,255,.48);box-shadow:0 0 20px rgba(0,125,255,.2);overflow:hidden;animation:cardFloat 4s ease-in-out infinite}.product:nth-child(2){animation-delay:.3s}.product:nth-child(3){animation-delay:.6s}.product:nth-child(4){animation-delay:.9s}.product:nth-child(5){animation-delay:1.2s}.product:nth-child(6){animation-delay:1.5s}
+.product:before{content:"";position:absolute;top:-80%;left:-30%;width:40%;height:260%;transform:rotate(25deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);animation:shine 4s linear infinite}.product h3{font-size:19px;margin-bottom:9px;position:relative}.price{font-size:22px;font-weight:900;color:#8ddaff;margin-bottom:16px;position:relative}.add-btn{width:100%;border:0;padding:12px;border-radius:12px;background:linear-gradient(90deg,#0077ff,#00bfff);color:#fff;font-weight:900;cursor:pointer;box-shadow:0 0 16px rgba(0,153,255,.35);position:relative}.add-btn:active{transform:scale(.98)}
+@keyframes cardFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}@keyframes shine{0%{left:-50%}100%{left:130%}}
+.notice{margin:30px 0;padding:20px;text-align:center;border-radius:18px;background:rgba(0,24,65,.82);border:1px solid rgba(0,170,255,.5);box-shadow:0 0 25px rgba(0,130,255,.2)}.notice h3{margin-bottom:8px}.notice p{line-height:1.7;color:#d8f4ff}.menu-word{color:#64caff;font-weight:900}
+.cart{margin:20px 0 40px;padding:20px;border-radius:18px;background:rgba(2,15,40,.88);border:1px solid rgba(0,170,255,.45)}.cart-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.cart-list{display:flex;flex-direction:column;gap:10px}.cart-item{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px;border-radius:12px;background:rgba(10,57,100,.55)}.cart-item span:first-child{flex:1}.remove-btn{border:1px solid #ff6677;background:rgba(255,0,40,.12);color:#ff9aa5;border-radius:8px;padding:6px 9px;cursor:pointer}.cart-total{display:flex;justify-content:space-between;margin-top:15px;padding-top:15px;border-top:1px solid rgba(255,255,255,.15);font-weight:900;font-size:18px}.pay-btn{margin-top:14px;width:100%;padding:13px;border:0;border-radius:12px;background:linear-gradient(90deg,#00a8ff,#006aff);color:#fff;font-weight:900;cursor:pointer}.empty{color:#9bc8e5;text-align:center;padding:12px}
+.modal{display:none;position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.72);align-items:flex-end;justify-content:center;padding:0}.modal.show{display:flex}.modal-box{width:min(560px,100%);background:linear-gradient(160deg,#061a39,#020b1e);border:1px solid rgba(0,174,255,.5);border-bottom:0;border-radius:24px 24px 0 0;padding:24px;box-shadow:0 -10px 45px rgba(0,119,255,.3);animation:sheet .25s ease}.modal-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}.close{border:0;background:rgba(255,255,255,.08);color:#fff;width:36px;height:36px;border-radius:50%;font-size:22px;cursor:pointer}.payment-card{padding:15px;margin:10px 0;border-radius:13px;background:rgba(12,63,108,.6);border:1px solid rgba(93,200,255,.25)}.payment-card b{display:block;color:#72d5ff;margin-bottom:5px}.done{width:100%;margin-top:12px;padding:12px;border:0;border-radius:11px;background:#13a66a;color:#fff;font-weight:900;cursor:pointer}@keyframes sheet{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.floating{position:fixed;right:15px;bottom:18px;z-index:60;display:flex;flex-direction:column;gap:10px}.float-btn{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;text-decoration:none;color:#fff;background:linear-gradient(145deg,#007bff,#003d9e);border:1px solid rgba(255,255,255,.25);box-shadow:0 0 17px rgba(0,137,255,.45);font-size:21px}.float-btn.payment{cursor:pointer;border:0}
+footer{text-align:center;padding:30px 15px 95px;color:#8bbbd7;font-size:13px}footer strong{display:block;color:#fff;margin-bottom:7px;text-shadow:0 0 10px #008cff}
+@media(min-width:650px){.products{grid-template-columns:repeat(2,1fr)}.hero{padding-top:80px}.modal{align-items:center;padding:20px}.modal-box{border-bottom:1px solid rgba(0,174,255,.5);border-radius:24px}}
+@media(min-width:1000px){.products{grid-template-columns:repeat(3,1fr)}.navbar{padding-left:5%;padding-right:5%}.hero{padding-top:100px;padding-bottom:60px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div class="blue-light one"></div><div class="blue-light two"></div>
+<nav class="navbar"><div class="logo">⚡ NORAGAMI STORE</div><div class="nav-actions"><button class="nav-btn" onclick="scrollToStore()">🛒 Store</button><button class="nav-btn" onclick="scrollToCart()">🛍️ Cart <span id="navCount">0</span></button></div></nav>
+<header class="hero"><h1>WELCOME</h1><h2>⚡OFFICIAL_NORAGAMI_STORE⚡</h2><p>⚔️ Poipet_Group`303 ⚔️</p></header>
+<main class="container">
+<section id="store"><h2 class="section-title">🛒 PRODUK POINT BLANK</h2><div class="filters"><button class="filter-btn active" onclick="filterProducts('all',this)">Semua</button><button class="filter-btn" onclick="filterProducts('point',this)">Point</button><button class="filter-btn" onclick="filterProducts('gift',this)">Gift</button><button class="filter-btn" onclick="filterProducts('akun',this)">Akun</button></div>
+<div class="products">
+<article class="product" data-category="point"><h3>Point Blank 10.000 Point</h3><div class="price">Rp 10.000</div><button class="add-btn" onclick="addToCart('Point Blank 10.000 Point',10000)">+ Tambah ke Keranjang</button></article>
+<article class="product" data-category="point"><h3>Point Blank 50.000 Point</h3><div class="price">Rp 50.000</div><button class="add-btn" onclick="addToCart('Point Blank 50.000 Point',50000)">+ Tambah ke Keranjang</button></article>
+<article class="product" data-category="point"><h3>Point Blank 100.000 Point</h3><div class="price">Rp 100.000</div><button class="add-btn" onclick="addToCart('Point Blank 100.000 Point',100000)">+ Tambah ke Keranjang</button></article>
+<article class="product" data-category="gift"><h3>Anime Gift</h3><div class="price">Rp 25.000</div><button class="add-btn" onclick="addToCart('Anime Gift',25000)">+ Tambah ke Keranjang</button></article>
+<article class="product" data-category="gift"><h3>Premium Anime Gift</h3><div class="price">Rp 50.000</div><button class="add-btn" onclick="addToCart('Premium Anime Gift',50000)">+ Tambah ke Keranjang</button></article>
+<article class="product" data-category="akun"><h3>Akun Point Blank</h3><div class="price">Rp 150.000</div><button class="add-btn" onclick="addToCart('Akun Point Blank',150000)">+ Tambah ke Keranjang</button></article>
+</div></section>
+<section class="notice"><h3>💳 Jika Sudah Transfer</h3><p>Silahkan Hubungi Admin Ada Di<br><span class="menu-word">Icon Menu</span><br>💳</p></section>
+<section class="cart" id="cart"><div class="cart-head"><h2>🛍️ Keranjang</h2><strong><span id="cartCount">0</span> item</strong></div><div id="cartList" class="cart-list"></div><div class="cart-total"><span>Total</span><span id="cartTotal">Rp 0</span></div><button class="pay-btn" onclick="openPayment()">💳 Lanjut Pembayaran</button></section>
+</main>
+<div class="modal" id="paymentModal"><div class="modal-box"><div class="modal-top"><h2>💳 Pembayaran</h2><button class="close" onclick="closePayment()">×</button></div><p style="color:#a9d8f2;margin-bottom:12px">Silakan transfer sesuai total pesanan ke salah satu rekening berikut:</p><div class="payment-card"><b>BCA</b><div>4670314176</div><small>STEVEN</small></div><div class="payment-card"><b>SEABANK</b><div>901868880212</div><small>STEVEN</small></div><div class="payment-card"><b>DANA / OVO / GOPAY / LINKAJA</b><div>08319327500</div><small>STEVEN</small></div><button class="done" onclick="paymentDone()">✅ Saya Sudah Transfer</button></div></div>
+<div class="floating"><a class="float-btn" href="https://www.instagram.com/Mio_Noragami_/" target="_blank" rel="noopener" aria-label="Instagram">📷</a><a class="float-btn" href="https://wa.me/6282173641345" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a><button class="float-btn payment" onclick="openPayment()" aria-label="Pembayaran">💳</button></div>
+<footer><strong>⚡OFFICIAL_NORAGAMI_STORE⚡</strong>© 2026 NORAGAMI STORE. All Rights Reserved.</footer>
+<script>
+let cart = JSON.parse(localStorage.getItem("noragami_cart")) || [];
+function formatRupiah(number){return new Intl.NumberFormat("id-ID",{style:"currency",currency:"IDR",minimumFractionDigits:0}).format(number)}
+function addToCart(name,price){cart.push({name,price});saveCart();renderCart();alert(name+" berhasil ditambahkan ke keranjang!")}
+function saveCart(){localStorage.setItem("noragami_cart",JSON.stringify(cart))}
+function renderCart(){const list=document.getElementById("cartList");const count=document.getElementById("cartCount");const navCount=document.getElementById("navCount");const totalEl=document.getElementById("cartTotal");count.textContent=cart.length;navCount.textContent=cart.length;if(!cart.length){list.innerHTML='<div class="empty">Keranjang masih kosong.</div>';totalEl.textContent=formatRupiah(0);return}let total=0;list.innerHTML=cart.map((item,index)=>{total+=item.price;return `<div class="cart-item"><span>${item.name}<br><small>${formatRupiah(item.price)}</small></span><button class="remove-btn" onclick="removeFromCart(${index})">Hapus</button></div>`}).join("");totalEl.textContent=formatRupiah(total)}
+function removeFromCart(index){cart.splice(index,1);saveCart();renderCart()}
+function filterProducts(category,button){document.querySelectorAll('.filter-btn').forEach(btn=>btn.classList.remove('active'));button.classList.add('active');document.querySelectorAll('.product').forEach(product=>{product.style.display=category==='all'||product.dataset.category===category?'block':'none'})}
+function scrollToStore(){document.getElementById('store').scrollIntoView({behavior:'smooth'})}
+function scrollToCart(){document.getElementById('cart').scrollIntoView({behavior:'smooth'})}
+function openPayment(){if(!cart.length){alert('Keranjang masih kosong. Silakan pilih produk terlebih dahulu.');return}document.getElementById('paymentModal').classList.add('show');document.body.style.overflow='hidden'}
+function closePayment(){document.getElementById('paymentModal').classList.remove('show');document.body.style.overflow=''}
+function paymentDone(){alert('Terima kasih! Silakan hubungi admin untuk konfirmasi pembayaran.');closePayment()}
+document.getElementById('paymentModal').addEventListener('click',function(e){if(e.target===this)closePayment()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closePayment()});renderCart();
+</script>
+</body>
+</html>
